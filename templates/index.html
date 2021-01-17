@@ -1,0 +1,29 @@
+{%extends 'Base.html'%}
+
+{%block title%}Social-Homepage{%endblock%}
+
+{%block body%}
+	<div class="container">
+		<h1>Homepage</h1>
+		<hr>
+		{% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible" role="alert">
+                  <strong>{{ message }}</strong> 
+                </div>
+            {% endfor %}
+        {% endif %}
+		{%for blog in blogs%}
+			<h3>{{blog.title}}</h3>
+			<h4>By {{blog.author}}<h4>
+			<h6>#{{blog.genre}}</h6>
+			<p>
+				{{blog.content}}
+			</p>
+			
+			<h4>{{blog.date}}</h4>
+			<hr>
+		{%endfor%}
+	</div>
+	
+{%endblock%}

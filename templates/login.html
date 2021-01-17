@@ -1,0 +1,32 @@
+{%extends 'Base.html'%}
+{%load my_template_tag%}
+
+{%block title%}Homepage{%endblock%}
+
+{%block body%}
+	<div class="container">
+		<h1>Login</h1>
+		<!-- <h3>{{num|incr}}</h3>
+		<form method="GET" action="http://www.google.com/search">
+			<input type="text" name="q" placeholder="your query">
+			<button class="btm btm-success" type="submit"> Search</button>
+		</form> -->
+		<hr>
+		{% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible" role="alert">
+                  <strong>{{ message }}</strong> 
+                </div>
+            {% endfor %}
+        {% endif %}
+		<form method="POST" action="/login">
+			{% csrf_token %}
+			<input type="text" name="username" placeholder="username" required="true"><br>
+			<input type="password" name="password" placeholder="password" required="true"><br>
+			<button class="btn btn-primary btn-sm" type="submit"> Login</button>
+		</form>
+
+
+	</div>
+
+{%endblock%}

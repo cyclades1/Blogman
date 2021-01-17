@@ -1,0 +1,20 @@
+{%extends 'Base.html'%}
+
+{%block body%}
+	<div class="container">
+		<h3>Hey {{request.user|capfirst}}..</h3>
+		<a href="/logout">logout</a>
+		<hr>
+		{%for blog in blogs%}
+			<h3>{{blog.title}}</h3>
+			<h4>By {{blog.author}}<h4>
+			<h6>#{{blog.genre}}</h6>
+			<p>
+				{{blog.content}}
+			</p>
+			
+			<h4>{{blog.date}}</h4>
+			<hr>
+		{%endfor%}
+	</div>
+{%endblock body%}
