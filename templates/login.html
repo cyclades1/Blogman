@@ -6,11 +6,7 @@
 {%block body%}
 	<div class="container">
 		<h1>Login</h1>
-		<!-- <h3>{{num|incr}}</h3>
-		<form method="GET" action="http://www.google.com/search">
-			<input type="text" name="q" placeholder="your query">
-			<button class="btm btm-success" type="submit"> Search</button>
-		</form> -->
+	
 		<hr>
 		{% if messages %}
             {% for message in messages %}
@@ -19,12 +15,16 @@
                 </div>
             {% endfor %}
         {% endif %}
-		<form method="POST" action="/login">
-			{% csrf_token %}
-			<input type="text" name="username" placeholder="username" required="true"><br>
-			<input type="password" name="password" placeholder="password" required="true"><br>
-			<button class="btn btn-primary btn-sm" type="submit"> Login</button>
-		</form>
+        <center>
+			<form class="my-3" method="POST" action="/login">
+				{% csrf_token %}
+				<label for="username">Username: </label>
+				<input class="my-1" type="text" name="username" placeholder="username" required="true"><br>
+				<label for="password">Password: </label>
+				<input class="my-1" type="password" name="password" placeholder="password" required="true"><br>
+				<button class="btn btn-primary my-2 " type="submit"> Login</button>
+			</form>
+		</center>
 
 
 	</div>

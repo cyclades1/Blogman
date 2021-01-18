@@ -43,13 +43,8 @@ def login_view(request, *agrs, **kwargs):
 		else :
 			messages.success(request, 'Username and Password did not match..')
 			return render(request, 'login.html')
-	elif(request.user.is_anonymous):
-		num = 1
-		context={
-		"num":num,
-		}
-		
-		return render(request, 'login.html', context)
+	elif(request.user.is_anonymous and request.method=="GET"):
+		return render(request, 'login.html')
 	return redirect('/profile')
 
 
