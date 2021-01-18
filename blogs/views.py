@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.template import loader
 from .models import Blog
 from django.contrib import messages
+from .forms import SubmitForm
 
 # Create your views here.
 
@@ -18,7 +19,11 @@ def index(request, *agrs, **kwargs):
 
 
 def about(request, *agrs, **kwargs):
-	return render(request, 'about.html')
+	form = SubmitForm()
+	context={
+		"form":form,
+	}
+	return render(request, 'about.html', context)
 
 def logout_user(request):
 	logout(request)

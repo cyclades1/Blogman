@@ -5,16 +5,22 @@
 		<h3>Hey {{request.user|capfirst}}..</h3>
 		<a href="/logout">logout</a>
 		<hr>
+		<h3> Your Blogs </h3>
+		<hr>
 		{%for blog in blogs%}
-			<h3>{{blog.title}}</h3>
-			<h4>By {{blog.author}}<h4>
-			<h6>#{{blog.genre}}</h6>
-			<p>
-				{{blog.content}}
-			</p>
+			<div class="my-3">
+				<h4>{{blog.title}}</h4>
+				<h5>By {{blog.author}}<h5>
+				<h6>#{{blog.genre}}</h6>
+				<p>
+					{{blog.content}}
+				</p>
+				
+				<h5>{{blog.date}}</h5>
+				<hr>
+			</div>
 			
-			<h4>{{blog.date}}</h4>
-			<hr>
+			
 		{%endfor%}
 	</div>
 {%endblock body%}
