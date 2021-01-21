@@ -3,24 +3,37 @@
 {%block body%}
 	<div class="container">
 		<h3>Hey {{request.user|capfirst}}..</h3>
-		<a href="/logout">logout</a>
+		<a style="float: right" href="/logout">logout</a>
+		<br>
+		<center><h3> Your Blogs </h3></center>
 		<hr>
-		<h3> Your Blogs </h3>
-		<hr>
-		{%for blog in blogs%}
-			<div class="my-3">
-				<h4>{{blog.title}}</h4>
-				<h5>By {{blog.author}}<h5>
-				<h6>#{{blog.genre}}</h6>
-				<p>
-					{{blog.content}}
-				</p>
-				
-				<h5>{{blog.date}}</h5>
-				<hr>
+		<div class="row">
+			<div class="col-sm">
+				<p>#Public</p>
+				{%for blog in Public_blogs%}
+					<div class="my-3">
+						<h4>{{blog.title}}</h4>
+						<h6>#{{blog.genre}}</h6>
+						<h5>{{blog.date}}</h5>
+						<a href="#">read full blog</a>
+						<hr>
+					</div>
+			
+				{%endfor%}
 			</div>
-			
-			
-		{%endfor%}
+			<div class="col-sm">
+				<p>#Private</p>
+				{%for blog in Private_blogs%}
+					<div class="my-3">
+						<h4>{{blog.title}}</h4>
+						<h6>#{{blog.genre}}</h6>
+						<h5>{{blog.date}}</h5>
+						<a href="#">read full blog</a>
+						<hr>
+					</div>
+				{%endfor%}
+			</div>
+		</div>
+		
 	</div>
 {%endblock body%}

@@ -51,7 +51,8 @@ def login_view(request, *agrs, **kwargs):
 def profile(request, *agrs, **kwargs):
 	obj = Blog.objects.filter(author= request.user.username)
 	context={
-		"blogs":obj
+		"Public_blogs":obj.filter(private=False),
+		"Private_blogs":obj.filter(private=True)
 	}
 	return render(request, 'profile.html', context)
 
