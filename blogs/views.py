@@ -9,7 +9,7 @@ from .forms import SubmitForm
 # Create your views here.
 
 def index(request, *agrs, **kwargs):
-	obj = Blog.objects.all()
+	obj = Blog.objects.filter(private=False)
 	context={
 		"blogs":obj
 	}

@@ -14,14 +14,14 @@
             {% endfor %}
         {% endif %}
 		{%for blog in blogs%}
-			<h3>{{blog.title}}</h3>
-			<h4>By {{blog.author}}<h4>
+			<h4>{{blog.title}}- By {{blog.author}}</h4>
 			<h6>#{{blog.genre}}</h6>
 			<p>
-				{{blog.content}}
+				{{blog.content|slice:100}}..
 			</p>
 			
-			<h4>{{blog.date}}</h4>
+			<h5>{{blog.date}}</h5>
+			<a href="#">read full blog</a>
 			<hr>
 		{%endfor%}
 	</div>
