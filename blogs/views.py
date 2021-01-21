@@ -62,7 +62,8 @@ def blog_page(request, *agrs, **kwargs):
 		title = request.POST.get('title')
 		content = request.POST.get('content')
 		genre = request.POST.get('genre')
-		obj = Blog.objects.create(author=author, title=title,genre = genre, content=content)
+		private = bool(request.POST.get('private'))
+		obj = Blog.objects.create(author=author, title=title,genre = genre, content=content, private=private)
 		messages.success(request, 'Your blog posted..')
 	elif request.user.is_anonymous:
 		messages.success(request, 'You need too Login first..')

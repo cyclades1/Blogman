@@ -17,17 +17,18 @@
 	<div class="py-1 ">
 	  <form method="POST" action="/blog">
 	  	{% csrf_token %}
-		  <textarea class="form-control" id="title" placeholder="Sunject title" name="title" rows="1" required="true"></textarea>
-		  <textarea class="form-control" id="content" placeholder="Write Something" name="content" rows="10" required="true"></textarea>
-		  <div class="dropdown">
-			 	 <select class="form-select" aria-label="Default select example" name="genre">
+		  <textarea class="my-1 form-control bg-dark text-light" id="title" placeholder="Sunject title" name="title" rows="1" required="true"></textarea>
+		  <textarea class="my-1 form-control bg-dark text-light" id="content" placeholder="Write Something" name="content" rows="10" required="true"></textarea>
+		  <label class="my-1" for="private">Private:</label> <input type="checkbox" name="private">
+		  <div class="my-1 dropdown">
+			 	 <select class="form-select bg-dark text-light" aria-label="Default select example" name="genre">
 				  <option selected>Select Type</option>
 				  <option value="Science and Technology">Science and Technology</option>
 				  <option value="Literature">Literature</option>
 				  <option value="Action">Action</option>
 				  <option value="Personal Expierence">Personal Expierence</option>
 				</select>
-			  <button type="submit" class="btn btn-primary">Post</button>
+			  <button type="submit" class="btn btn-primary my-1">Post</button>
 			</div>
 	  </div>
 	  
