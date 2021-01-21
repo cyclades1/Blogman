@@ -23,5 +23,5 @@ urlpatterns = [
      path('blog',blog_views.blog_page, name="blog"),
      path('login',blog_views.login_view,name="login"),
      path('logout',blog_views.logout_user,name="logout"),
-     path('profile',blog_views.profile,name="profile")
+     path('profilepage',blog_views.profile,name="profile")
 ]

@@ -14,6 +14,7 @@ class Blog(models.Model):
 	genre  = models.CharField(max_length = 30, blank = True, null = True, choices=genre_type)
 	content= models.TextField(blank = False)
 	date   = models.DateField(blank= False, auto_now=True)
+	private= models.BooleanField(default= False)
 
 	def __str__(self):
 		return str(self.pk)+" "+ str(self.date)
