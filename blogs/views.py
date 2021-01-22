@@ -5,6 +5,9 @@ from django.template import loader
 from .models import Blog
 from django.contrib import messages
 from .forms import SubmitForm
+from django.contrib.auth.decorators import login_required
+
+
 
 # Create your views here.
 
@@ -45,9 +48,30 @@ def login_view(request, *agrs, **kwargs):
 			return render(request, 'login.html')
 	elif(request.user.is_anonymous and request.method=="GET"):
 		return render(request, 'login.html')
-	return redirect('/profile')
+	return redirect('/')
 
 
+def signup(request, *args, **kwargs):
+
+	if(request.user.is_anonymous and request.method=="GET"):
+		return render(request, 'login.html')
+
+	elif request.method == "POST":
+		first_name = request.POST.get('first_name')
+		last_name = request.POST.get('last_name')
+		username = request.POST.get('username')
+		email = request.POST.get('email')
+		password = request.POST.get('password')
+		print(first_name, last_name, username, email, password)
+		if bool(User.objects.filter(email=email)):
+			messages.success(request, "User already exist..")
+			return redirect('/login')
+		user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
+		login(request, user)
+		messages.success(request, "Your account is active now..")
+		return redirect('/')
+	
+@login_required
 def profile(request, *agrs, **kwargs):
 	obj = Blog.objects.filter(author= request.user.username)
 	context={
@@ -56,6 +80,8 @@ def profile(request, *agrs, **kwargs):
 	}
 	return render(request, 'profile.html', context)
 
+
+@login_required
 def blog_page(request, *agrs, **kwargs):
 
 	if request.method == "POST":

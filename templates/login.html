@@ -23,9 +23,9 @@
 			
 					<form class="my-3" method="POST" action="/login">
 						{% csrf_token %}
-						<label class="mb-1" for="username">Username: </label>
+						<label class="mb-1" for="username">Username:</label>
 						<input class="form-control bg-dark text-light" type="text" name="username" placeholder="username" required="true"><br>
-						<label class="mb-1" for="password">Password: </label>
+						<label class="mb-1" for="password">Password:</label>
 						<input class="form-control bg-dark text-light" type="password" name="password" placeholder="password" required="true"><br>
 						<button class="btn btn-primary my-1 " type="submit"> Login</button>
 					</form>
@@ -38,11 +38,15 @@
 				
 					<form class="my-3" method="POST" action="/signup">
 						{% csrf_token %}
-						<label class="mb-1" for="username">Username: </label>
+						<label class="mb-1" for="first_name">First Name:</label>
+						<input class="form-control bg-dark text-light" type="text" name="first_name" placeholder="first name" required="true"><br>
+						<label class="mb-1" for="last_name">Last Name:</label>
+						<input class="form-control bg-dark text-light" type="text" name="last_name" placeholder="last name" required="true"><br>
+						<label class="mb-1" for="username">Username:</label>
 						<input class=" form-control bg-dark text-light" type="text" name="username" placeholder="username" required="true"><br>
-						<label class="mb-1" for="username">Email: </label>
+						<label class="mb-1" for="username">Email:</label>
 						<input class="form-control bg-dark text-light" type="email" name="email" placeholder="example@host.com" required="true"><br>
-						<label class="mb-1" for="password">Password: </label>
+						<label class="mb-1" for="password">Password:</label>
 						<input class="form-control bg-dark text-light" type="password" name="password" placeholder="password" required="true"><br>
 						<button class="btn btn-primary my-1 " type="submit"> Sign up</button>
 					</form>
