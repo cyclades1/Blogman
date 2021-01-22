@@ -67,6 +67,6 @@ def blog_page(request, *agrs, **kwargs):
 		obj = Blog.objects.create(author=author, title=title,genre = genre, content=content, private=private)
 		messages.success(request, 'Your blog posted..')
 	elif request.user.is_anonymous:
-		messages.success(request, 'You need too Login first..')
+		messages.success(request, 'You need to Login first..')
 		return redirect('/login') 
 	return render(request, 'blog.html')
