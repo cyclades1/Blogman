@@ -81,7 +81,7 @@ def profile(request, *agrs, **kwargs):
 	return render(request, 'profile.html', context)
 
 
-@login_required
+
 def blog_page(request, *agrs, **kwargs):
 
 	if request.method == "POST":
