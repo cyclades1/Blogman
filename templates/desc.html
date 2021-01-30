@@ -1,11 +1,11 @@
 {%extends 'Base.html'%}
 
-{%block title%}Homepage{%endblock%}
+{%block title%}Description{%endblock%}
 
 {%block body%}
 	<div class="container">
-		<h2>Homepage</h2>
-		<hr>
+	<h3>Description</h3>
+	<hr>
 		{% if messages %}
             {% for message in messages %}
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -13,17 +13,16 @@
                 </div>
             {% endfor %}
         {% endif %}
-		{%for blog in blogs%}
+		
 			<h4>{{blog.title}}- By {{blog.author}}</h4>
 			<h6>#{{blog.genre}}</h6>
 			<p>
-				{{blog.content|slice:100}}..
+				{{blog.content}}..
 			</p>
 			
 			<h5>{{blog.date}}</h5>
-			<a href="/desc/{{blog.id}}">read full blog</a>
+			
 			<hr>
-		{%endfor%}
 	</div>
 	
 {%endblock%}

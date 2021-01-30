@@ -96,3 +96,17 @@ def blog_page(request, *agrs, **kwargs):
 		messages.success(request, 'You need to Login first..')
 		return redirect('/login') 
 	return render(request, 'blog.html')
+
+
+def desc(request, id, *args, **kwargs):
+	try:
+		blog = Blog.objects.get(id = id)
+		context={
+			'blog':blog
+		}
+	except Exception as e:
+		messages.success(request, "Not a valid blog..")
+		return redirect('/')
+		
+	return render(request,'desc.html', context)
+	# return HttpResponse(id)

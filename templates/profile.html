@@ -1,5 +1,8 @@
 {%extends 'Base.html'%}
 
+{%block title%}Profile{%endblock%}
+
+
 {%block body%}
 	<div class="container">
 		<h3>Hey {{request.user|capfirst}}..</h3>
@@ -15,7 +18,7 @@
 						<h4>{{blog.title}}</h4>
 						<h6>#{{blog.genre}}</h6>
 						<h5>{{blog.date}}</h5>
-						<a href="#">read full blog</a>
+						<a href="/desc/{{blog.id}}">read full blog</a>
 						<hr>
 					</div>
 			
@@ -28,7 +31,7 @@
 						<h4>{{blog.title}}</h4>
 						<h6>#{{blog.genre}}</h6>
 						<h5>{{blog.date}}</h5>
-						<a href="#">read full blog</a>
+						<a href="/desc/{{blog.id}}">read full blog</a>
 						<hr>
 					</div>
 				{%endfor%}
