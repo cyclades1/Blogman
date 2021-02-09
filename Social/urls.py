@@ -15,13 +15,34 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers, serializers, viewsets
+from django.contrib.auth.models import User
 
 admin.site.site_header = "Social Admin"
 admin.site.site_title = "Social Admin Portal"
 admin.site.index_title = "Welcome to Social Portal"
 
+# serializer for API representation
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = User
+		fields = ['username', 'email']
+
+
+# Viewset to define the behavior of view
+class UserViewSet(viewsets.ModelViewSet):
+	queryset = User.objects.all()
+	serializer_class = UserSerializer;
+
+
+# Router for autometic URL config
+router = routers.DefaultRouter()
+router.register(r'users',UserViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('blogs.urls'))
+    path('',include('blogs.urls')),
+    path('api/', include(router.urls)),
+    path('user-info/', include('rest_framework.urls', namespace='rest_framework'))
 ]
