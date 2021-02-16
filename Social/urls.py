@@ -70,7 +70,7 @@ class BlogViewSet(viewsets.ModelViewSet):
 
     queryset            = Blog.objects.filter(private=False)
     serializer_class    = BlogSerializer
-    http_method_names =['get',]
+    http_method_names   = ['get',]
 
 
 # connecting the ViewSets
