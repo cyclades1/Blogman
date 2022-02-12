@@ -14,7 +14,7 @@
             {% endfor %}
         {% endif %}
 		{%for blog in blogs%}
-			<h4>{{blog.title}}- By {{blog.author}}</h4>
+			<h4>{{blog.title}}</h4>
 			<h6>#{{blog.genre}}</h6>
 			<p>
 				{{blog.content|slice:100}}..

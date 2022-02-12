@@ -1,4 +1,12 @@
 {%extends 'Base.html'%}
+{%block head%}
+<script type="text/javascript">
+	console.log("hello");
+				// var contextdata = {{blog.content}};
+				// var contextblog= document.getElementById('context');
+				// contextblog.innerHTML = context;
+</script>
+{%endblock%}
 
 {%block title%}Description{%endblock%}
 
@@ -6,6 +14,7 @@
 	<div class="container">
 	<h3>Description</h3>
 	<hr>
+	
 		{% if messages %}
             {% for message in messages %}
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -14,15 +23,21 @@
             {% endfor %}
         {% endif %}
 		
-			<h4>{{blog.title}}- By {{blog.author}}</h4>
+			<h4>{{blog.title}}- By {{author}}</h4>
 			<h6>#{{blog.genre}}</h6>
-			<p>
-				{{blog.content}}..
+
+			<p id ="context">
+				{{blog.content}}
 			</p>
 			
 			<h5>{{blog.date}}</h5>
 			
 			<hr>
+			<script type="text/javascript">	
+				var context= document.getElementById('context').innerHTML;
+				context=context.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+				document.getElementById('context').innerHTML=context;
+			</script>
 	</div>
 	
 {%endblock%}

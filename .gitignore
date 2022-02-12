@@ -2,3 +2,5 @@ __pycache__
 */pycache_
 *.pyc
 *.pyo
+db.sqlite3
+env/*

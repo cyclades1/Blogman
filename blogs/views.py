@@ -6,13 +6,14 @@ from .models import Blog
 from django.contrib import messages
 from .forms import SubmitForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 
 # Create your views here.
 
 def index(request, *agrs, **kwargs):
-	obj = Blog.objects.filter(private=False)
+	obj = Blog.objects.filter(private=False).order_by('-date')
 	context={
 		"blogs":obj
 	}
@@ -73,7 +74,8 @@ def signup(request, *args, **kwargs):
 	
 @login_required
 def profile(request, *agrs, **kwargs):
-	obj = Blog.objects.filter(author= request.user.username)
+	print(request.user.id)
+	obj = Blog.objects.filter(author= request.user.id)
 	context={
 		"Public_blogs":obj.filter(private=False),
 		"Private_blogs":obj.filter(private=True)
@@ -85,7 +87,7 @@ def profile(request, *agrs, **kwargs):
 def blog_page(request, *agrs, **kwargs):
 
 	if request.method == "POST":
-		author = request.user.username
+		author = request.user.id
 		title = request.POST.get('title')
 		content = request.POST.get('content')
 		genre = request.POST.get('genre')
@@ -101,12 +103,15 @@ def blog_page(request, *agrs, **kwargs):
 def desc(request, id, *args, **kwargs):
 	try:
 		blog = Blog.objects.get(id = id)
+		author = User.objects.get(id = blog.author)
+
 		context={
-			'blog':blog
+			'blog':blog,
+			"author":author
 		}
 	except Exception as e:
+		print(e)
 		messages.success(request, "Not a valid blog..")
 		return redirect('/')
-		
+	print(blog.content)
 	return render(request,'desc.html', context)
-	# return HttpResponse(id)

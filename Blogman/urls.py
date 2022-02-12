@@ -1,4 +1,4 @@
-"""Social URL Configuration
+"""Blogman URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -23,9 +23,9 @@ from rest_framework import routers, serializers, viewsets, status
 from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 
-admin.site.site_header = "Social Admin"
-admin.site.site_title = "Social Admin Portal"
-admin.site.index_title = "Welcome to Social Portal"
+admin.site.site_header = "Blogman Admin"
+admin.site.site_title = "Blogman Admin Portal"
+admin.site.index_title = "Welcome to Blogman Portal"
 
 # serializer for API representation
 class UserSerializer(serializers.ModelSerializer):
