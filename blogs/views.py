@@ -7,19 +7,36 @@ from django.contrib import messages
 from .forms import SubmitForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from datetime import  *
 
-
+page_count = 5
 
 # Create your views here.
 
 def index(request, *agrs, **kwargs):
-	obj = Blog.objects.filter(private=False).order_by('-date')
+	req_data = request.GET
+	page = int(req_data.get('page')) if 'page' in req_data else 1
+
+	start = (page-1)*page_count
+	end = page_count*page
+	count = (Blog.objects.filter(private=False).count() +page_count-1)//page_count 
+	blogs = Blog.objects.filter(private=False).order_by('-date')[start:end]
 	context={
-		"blogs":obj
+	"blogs":blogs,
+	"cur":page
 	}
+	if page<count:
+		context["last"]=count
+		if page+1<count:
+			context["next"]=page+1
+
+	if page > 1:
+		if page-1!=1:
+			context["pre"]=page-1
+		context['first']=1
+
 	template = loader.get_template('index.html')
 	return HttpResponse(template.render(context, request))
-	# return HttpResponse("this is the home page")
 
 
 def about(request, *agrs, **kwargs):
@@ -74,7 +91,6 @@ def signup(request, *args, **kwargs):
 	
 @login_required
 def profile(request, *agrs, **kwargs):
-	print(request.user.id)
 	obj = Blog.objects.filter(author= request.user.id)
 	context={
 		"Public_blogs":obj.filter(private=False),
@@ -92,7 +108,7 @@ def blog_page(request, *agrs, **kwargs):
 		content = request.POST.get('content')
 		genre = request.POST.get('genre')
 		private = bool(request.POST.get('private'))
-		obj = Blog.objects.create(author=author, title=title,genre = genre, content=content, private=private)
+		obj = Blog.objects.create(author=author, title=title,genre = genre, content=content, private=private, date= datetime.now())
 		messages.success(request, 'Your blog posted..')
 	elif request.user.is_anonymous:
 		messages.success(request, 'You need to Login first..')
@@ -113,5 +129,5 @@ def desc(request, id, *args, **kwargs):
 		print(e)
 		messages.success(request, "Not a valid blog..")
 		return redirect('/')
-	print(blog.content)
+
 	return render(request,'desc.html', context)

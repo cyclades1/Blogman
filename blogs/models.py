@@ -11,11 +11,12 @@ class Blog(models.Model):
 		("Action","Action"),
 		("Personal Expierence","Personal Expierence"),
 	]
-	author = models.CharField(max_length=30)
-	title  = models.CharField(max_length=30)
-	genre  = models.CharField(max_length = 30, blank = True, null = True, choices=genre_type)
+	author = models.CharField(max_length=50)
+	title  = models.CharField(max_length=100)
+	genre  = models.CharField(max_length = 50, blank = True, null = True, choices=genre_type)
 	content= models.TextField(blank = False)
-	date = models.DateField(blank= False, auto_now=True)
+	date = models.DateTimeField(blank= False)
+	update_time = models.DateTimeField(blank= False, auto_now=True)
 	private= models.BooleanField(default= False)
 
 	def __str__(self):

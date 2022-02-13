@@ -24,6 +24,23 @@
 			<a href="/desc/{{blog.id}}">read full blog</a>
 			<hr>
 		{%endfor%}
+		{%if first%}
+			<a  href=/?page={{first}}>first</a>
+		{%endif%}
+
+		{%if pre%}
+			<a  href=/?page={{pre}}>{{pre}}</a>
+		{%endif%}
+
+		<a  href=/?page={{cur}}>{{cur}}</a>
+
+		{%if next%}
+			<a  href=/?page={{next}}>{{next}}</a>
+		{%endif%}
+		
+		{%if last%}
+			<a  href=/?page={{last}}>last</a>
+		{%endif%}
 	</div>
 	
 {%endblock%}
